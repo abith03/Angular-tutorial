@@ -1,0 +1,39 @@
+<div class="container mt-5">
+  <button class="btn btn-primary" (click)="logOut()">Log Out</button><br><br>
+
+   <input type="text" [(ngModel)]="searchText" placeholder="Search here">
+
+  <div *ngIf="successmsg" class="alert alert-success alert-dismissible fade show" role="alert" >
+    <strong>{{successmsg}}</strong> 
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  </div>  
+    <table class="table table-striped" >
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">name</th>
+            <th scope="col">price</th>
+            <th scope="col">date</th>
+            <th scope="col">Operators</th>
+
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor ='let us of readData |search:searchText'>
+            <th scope="row">{{us.id}}</th>
+            <td>{{us.name}}</td>
+            <td>{{us.price}}</td>
+            <td>{{us.date}}</td>
+            <td><button class="btn btn-sm btn-danger" (click)="deleteID(us.id)">Delete</button>
+              &nbsp;
+            <a [routerLink]="['/create',us.id]" class="btn btn-sm btn-success">Update</a></td>
+
+
+          </tr>
+        </tbody><br><br>
+       <p><strong>  Click  Down the Button to Add a Medicine Here</strong><br><br> <a [routerLink]="['/create']"  class="btn btn-dark btn-sm">Add</a></p>
+
+      </table>
+
+
+</div>
